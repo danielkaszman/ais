@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"
+      integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AIS Hack</title>
+  </head>
+  <body>
+    <div>
+      <div>
+        <label>Adj meg egy AIS kodot: </label>
+      </div>
+      <div>
+        <input type="number" id="input" />
+      </div>
+      <div>
+        <img
+          src=""
+          id="image"
+          style="max-height: 60vh; max-width: 90vw; margin-top: 10px"
+        />
+      </div>
+    </div>
+
+    <script>
+      const input = document.getElementById("input");
+      const image = document.getElementById("image");
+      input.addEventListener("keypress", kereses);
+
+      function kereses(e) {
+        if (e.key === "Enter") {
+          const hashed = CryptoJS.SHA1(
+            input.value,
+            "secret key 123"
+          ).toString();
+
+          const hashedUpper = hashed.toUpperCase();
+
+          image.src = `https://ais2.ujs.sk/fotky/${hashedUpper}.jpg`;
+        }
+      }
+    </script>
+  </body>
+</html>
